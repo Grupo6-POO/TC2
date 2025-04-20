@@ -6,13 +6,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
+
+import Entidad.Arreglo_Alumno;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class V1 extends JFrame {
+public class V1 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -28,6 +36,7 @@ public class V1 extends JFrame {
 	private JComboBox cmboxDispo;
 	private JScrollPane scrollPane;
 	private JTextArea txtS;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -118,6 +127,39 @@ public class V1 extends JFrame {
 				txtS = new JTextArea();
 				scrollPane.setViewportView(txtS);
 			}
+		}
+		{
+			btnNewButton = new JButton("Registrar");
+			btnNewButton.addActionListener(this);
+			btnNewButton.setBounds(293, 69, 89, 23);
+			contentPane.add(btnNewButton);
+		}
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+	}
+	Arreglo_Alumno aa = new Arreglo_Alumno();
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		
+		
+	}
+	void Imprimir(String s)
+	{
+		txtS.append(s + "\n");
+	}
+	void Listado()
+	{
+		Imprimir("Codigo\tDNI\tNombre\tApellido\tDisponible");
+		for (int i = 0; i < aa.Tamaño(); i++) 
+		{
+			String linea =
+					aa.Obtener(i).getCod() + "\t" +
+					aa.Obtener(i).getDni() + "\t" +
+					aa.Obtener(i).getNombre() + "\t" +
+					aa.Obtener(i).getApellido() + "\t";
+			Imprimir(linea);
 		}
 	}
 }
