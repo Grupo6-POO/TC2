@@ -40,10 +40,10 @@ public class CalcularNotas {
 	public void setN4(double n4) {
 		this.n4 = n4;
 	}
-	public double calcularPromedio(double n1, double n2) {//Aplicando Sobrecarga de Metodos
+	public double calcularPromedio(double n1, double n2, double n3) {//Aplicando Sobrecarga de Metodos
         return (n1 + n2 + n3) / 2;
     }
-    public double calcularPromedio(double n1, double n2, double n3) {//Aplicando Sobrecarga de Metodos
+    public double calcularPromedio(double n1, double n2, double n3, double n4) {//Aplicando Sobrecarga de Metodos
         return (n1 + n2 + n3 + n4) / 3;
     }
     

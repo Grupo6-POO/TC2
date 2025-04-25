@@ -7,13 +7,19 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Entidad.CalcularNotas;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class AgregarNotas extends JDialog {
+public class AgregarNotas extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -64,7 +70,7 @@ public class AgregarNotas extends JDialog {
 		}
 		{
 			lblNotaSegundobimestre = new JLabel("Nota Segundo Bimestre");
-			lblNotaSegundobimestre.setBounds(20, 47, 128, 14);
+			lblNotaSegundobimestre.setBounds(20, 47, 138, 14);
 			contentPanel.add(lblNotaSegundobimestre);
 		}
 		{
@@ -102,8 +108,9 @@ public class AgregarNotas extends JDialog {
 			contentPanel.add(txtCuartoBim);
 		}
 		{
-			btnNewButton = new JButton("Registrar");
-			btnNewButton.setBounds(273, 36, 99, 36);
+			btnNewButton = new JButton("Calcular y Registrar");
+			btnNewButton.addActionListener(this);
+			btnNewButton.setBounds(349, 124, 161, 36);
 			contentPanel.add(btnNewButton);
 		}
 		{
@@ -132,7 +139,7 @@ public class AgregarNotas extends JDialog {
 		}
 		{
 			lblNewLabel_1 = new JLabel("Ingresar Codigo de Alumno");
-			lblNewLabel_1.setBounds(20, 154, 161, 14);
+			lblNewLabel_1.setBounds(10, 151, 161, 14);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
@@ -140,6 +147,41 @@ public class AgregarNotas extends JDialog {
 			txtCodAlum.setColumns(10);
 			txtCodAlum.setBounds(168, 148, 86, 20);
 			contentPanel.add(txtCodAlum);
+		}
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		try {
+		    int n1 = Integer.parseInt(txtPrimerBim.getText().trim());
+		    int n2 = Integer.parseInt(txtSegundoBim.getText().trim());
+		    int n3 = Integer.parseInt(txtTercerBim.getText().trim());
+
+		    String textoN4 = txtCuartoBim.getText().trim();
+
+		    double resultado;
+		    CalcularNotas objPromedio;
+
+		    if (textoN4.isEmpty()) {
+		      
+		        objPromedio = new CalcularNotas(n1, n2, n3);
+		        resultado = objPromedio.calcularPromedio(n1, n2, n3);
+		    } else {
+		        int n4 = Integer.parseInt(textoN4);
+		        objPromedio = new CalcularNotas(n1, n2, n3, n4);
+		        resultado = objPromedio.calcularPromedio(n1, n2, n3, n4);
+		    }
+
+		    txtS.append("Nota1\tNota2\tNota3\tNota4\tPromedio\tCodigo del Alumno");
+		    txtS.append(""+resultado);
+		    
+		    
+
+		} catch (NumberFormatException ex) {
+		    JOptionPane.showMessageDialog(null, "Por favor, ingresa números válidos en todos los campos.");
 		}
 	}
 }

@@ -21,7 +21,7 @@ public class Arreglo_Alumno {
 	{
 		return estu.size();
 	}
-	public Alumno Obtener(int x)
+	public Alumno Obtener(int x)//Metodos
 	{
 		return estu.get(x);
 	}
