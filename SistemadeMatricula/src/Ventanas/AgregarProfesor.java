@@ -51,6 +51,11 @@ public class AgregarProfesor extends JDialog {
 			TxtNombre.setColumns(10);
 		}
 		{
+			JLabel lblNewLabel_1 = new JLabel("New label");
+			lblNewLabel_1.setBounds(10, 33, 45, 13);
+			contentPanel.add(lblNewLabel_1);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
